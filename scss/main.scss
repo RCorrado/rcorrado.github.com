@@ -73,7 +73,11 @@ h1 {
 
     @include smd{
         font-size: 1.75em;
-        margin: 5% auto 1% auto;
+        margin: 5% auto 2.5% auto;
+    }
+
+    @include md{
+        margin-bottom: 1%;
     }
 }
 
@@ -83,7 +87,11 @@ h2 {
 
     @include smd {
         font-size: 1.25em;
-        margin: 5% auto 1% auto;
+        margin: 7.5% auto 2.5% auto;
+    }
+
+    @include md{
+        margin-bottom: 1%;
     }
 }
 
@@ -92,6 +100,10 @@ section{
 
     @include md{
         padding: 15% 2%;
+    }
+
+    @include lg{
+        padding: 5% 2%;
     }
 }
 
@@ -185,10 +197,15 @@ header {
         background: $blue;
         color: $white;
         position: sticky;
-        height: 35px;
+        height: 50px;
+        padding-top: 1%;
 
         ul {
             background: $blue;
+
+            @include lg {
+                margin-top: 5px !important;
+            }
 
             li {
                 .title {
@@ -207,6 +224,7 @@ header {
             max-width: 90%;
             top: 15px;
             left: 10px;
+            padding-top: .5% !important;
         }
     }
 }
@@ -227,15 +245,23 @@ nav {
         justify-content: space-around;
         align-items: flex-start;
         height: 100vh;
-        width: 100%;
+        width: 60%;
         z-index: 3;
+
+        @include lg{
+            width: 98% !important;
+        }
 
         li {
             list-style: none;
-            margin: 1.75% 2.5%;
+            margin: 0 0 0 5%;
+
+            @include lg{
+                margin-left: 2% !important;
+            }
 
             &:first-child {
-                font-size: 1.25rem;
+                font-size: 1.5rem;
                 margin-left: 5px;
 
                 &:hover{
@@ -316,7 +342,7 @@ nav {
 
                 &:nth-child(2) {
                     display: block;
-                    margin-right: auto;
+                    margin-right: auto !important;
                     font-size: 1.25em;
                     font-weight: bold;
                     letter-spacing: 2.5px;
@@ -343,9 +369,18 @@ nav.header {
 
     ul{
         background: $white;
+
+        @include lg{
+            width: 100% !important;
+        }
+
         li{
             &:after{
                 background: $purple;
+            }
+
+            @include lg{
+                margin-right: 1%;
             }
         }
     }
@@ -447,6 +482,11 @@ nav.header {
 
                 img {
                     opacity: 1;
+
+                    @include md{
+                        margin: 10% auto 5% 0;
+                        max-width: 30%;
+                    }
                 }
 
                 div {
@@ -462,9 +502,19 @@ nav.header {
 
                 @include md {
                     text-align: left !important;
+
+                    h3{
+                        max-width: 75%;
+                    }
+
+                    p{
+                        margin-left: 0 !important;
+                    }
                 }
 
                 @include lg {
+                    margin: 10% auto 2.5% auto;
+
                     .img-others {
                         max-width: 25%;
                         margin-left: 0;
@@ -485,6 +535,24 @@ nav.header {
     }
 }
     /*TECNOLOGÍAS*/
+#techs {
+    article {
+        &.article-grid {
+            @include sm {
+                grid-template-columns: 50% 50%;
+            }
+
+            @include md {
+                grid-template-columns: 25% 25% 25% 25%;
+                grid-column-gap: 0;
+            }
+
+            @include lg {
+                grid-template-columns: 20% 20% 20% 20% 20%;
+            }
+        }
+    }
+}
     /*CONTACTO*/
     #contacto {
         background-color: rgba($blue, .8);

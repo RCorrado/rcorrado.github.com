@@ -11,10 +11,12 @@ function checkAnchor(ev) {
     $('html, body').animate({ scrollTop: h }, 1000);
 }
 
-function checkWidth() {
+function checkWidth(limits, e="") {
     let w = $(window).width();
     if (w <= 990) {
-        $('header nav ul').slideUp();
+        if (e != "") {
+            $(e).slideUp();
+        }
         blockHTML();
         let sc = checkScroll();
         getHeaders(sc, limits[0]);
@@ -42,6 +44,10 @@ function getAttr(str, e) {
     return at;
 }
 
+function setCSS(str, e, at) {
+    $(e).css(at, str);
+}
+
 function getOffset(e) {
     return $(e).offset().top;
 }
@@ -65,7 +71,7 @@ function getHeaders(h, limit) {
 function getScrolling(str, h, limits) {
     let elem = getElem(str);
     for (let i = 0; i < elem.length - 1; i++) {
-        if (h >= limits[i] && h < limits[i+1]) {
+        if (h >= (limits[i] - 50) && h < limits[i+1]) {
             let e = getAttr('id', elem[i]);
             makeHappen(e);
         } else if (h >= limits[i + 1]) {
@@ -120,7 +126,7 @@ function slideRight(id, sonElem = "") {
 function hideElem(elemToHide, elemToShow = "") {
     $(elemToHide).hide();
     if (elemToShow != "") {
-        $(elemToShow).slideDown(100);
+        $(elemToShow).slideDown();
     }
 }
 
@@ -163,4 +169,14 @@ function checkInterval() {
     }, 1000);
 }
 
-export { checkAnchor, checkScroll, getElements, getHeaders, getScrolling, setScrollTop, showPop, getAttr, getElem, hideElem, blockHTML, checkInterval, checkWidth }
+function calcAge(d, e) {
+    const now = new Date();
+    const birth = new Date(d);
+    let age = now.getFullYear() - birth.getFullYear();
+    if (now.getMonth() - birth.getMonth() < 0 || now.getMonth() - birth.getMonth() == 0 && now.getMonth() < birth.getMonth()) {
+        age--;
+    }
+    $(e).html(age);
+}
+
+export { setCSS, calcAge, checkAnchor, checkScroll, getElements, getHeaders, getScrolling, setScrollTop, showPop, getAttr, getElem, hideElem, blockHTML, checkInterval, checkWidth }
